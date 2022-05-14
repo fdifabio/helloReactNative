@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, useColorScheme} from 'react-native';
 import ItemSeparator from './ItemSeparator';
-import {environment} from '../environment';
 import Location from '../models/location';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
