@@ -27,9 +27,10 @@ const App: () => Node = () => {
                 <Stack.Screen
                     name="List"
                     component={ListScreen}
-                    options={{ title: 'Listado' }}
+                    options={{ title: 'Listado', headerTitleAlign: 'center' }}
                 />
-                <Stack.Screen name="Detail" component={DetailScreen} />
+                <Stack.Screen name="Detail" component={DetailScreen}
+                options={{title:'Detalle', headerTitleAlign: 'center'}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
