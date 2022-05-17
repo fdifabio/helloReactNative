@@ -36,7 +36,7 @@ const List = ({navigation}) => {
     };
 
     const handleDetail = (location: Location) => {
-        navigation.navigate('Detail', {id: 19});
+        navigation.navigate('Detail', {id: location.id});
     }
 
     const renderItemComponent = (data) =>
