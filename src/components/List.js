@@ -3,6 +3,10 @@ import {FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, useColorSche
 import ItemSeparator from './ItemSeparator';
 import Location from '../models/location';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {environment} from '../environments/environment';
+import autorization from '../util/Autorization';
+import Loading from './Loading';
+import {Error} from './Error';
 
 const List = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -12,6 +16,7 @@ const List = () => {
 
     const [locations, setLocations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         loadData();
@@ -23,17 +28,18 @@ const List = () => {
 
     const loadData = () => {
         setLoading(true);
-        setLocations([
-            new Location({
-                id: 1, name: "Viedma", contact: "2920553263",
-                linkInfo: "link info", latitude: 23.34, longitude: 23.4,
-            }),
-            new Location({
-                id: 2, name: "Carmen de patagones", contact: "292054325232",
-                linkInfo: "link info patagones", latitude: 23.34, longitude: 23.4,
-            }),
-        ]);
-        setLoading(false);
+        setError(null)
+        fetch(environment.baseURL + 'api/locations', autorization)
+            .then(res => res.json())
+            .then(data =>{
+                let locations = data?.map(l => new Location(l));
+                setLocations(locations);
+                setLoading(false)
+            })
+            .catch(e =>{
+                setError(e);
+                setLoading(false)
+            })
     };
 
     const renderItemComponent = (location) =>
@@ -42,6 +48,10 @@ const List = () => {
             <Text style={[textStyle, styles.textTitle]}>{location.contact}</Text>
         </TouchableOpacity>;
 
+
+    if(error != null){
+        return <Error onRefresh={handleRefresh}></Error>
+    }
     return (
         <SafeAreaView style={styles.container}>
             <FlatList data={locations}

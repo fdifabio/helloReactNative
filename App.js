@@ -12,6 +12,7 @@ import {StatusBar, StyleSheet, useColorScheme, View} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import List from './src/components/List';
+import Detail from './src/components/Detail';
 
 
 const App: () => Node = () => {
@@ -24,6 +25,7 @@ const App: () => Node = () => {
     return (
         <View style={[backgroundStyle,styles.container]}>
             <List/>
+            <Detail/>
         </View>
     );
 };
