@@ -34,13 +34,13 @@ const Detail = () => {
                 setLoading(false);
             })
             .catch(e => {
-                setError(e);
                 setLoading(false);
+                setError(e);
             });
     };
 
     if (error != null) {
-        return <Error onRefresh={handleRefresh()}></Error>;
+        return <Error onRefresh={handleRefresh}></Error>;
     }
     if (loading || location == null) {
         return <Loading></Loading>;
