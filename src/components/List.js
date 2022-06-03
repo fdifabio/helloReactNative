@@ -40,7 +40,8 @@ const List = ({navigation}) => {
     }
 
     const renderItemComponent = (data) =>
-        <TouchableOpacity style={[backgroundStyle,styles.container]} onPress={() => handleDetail(data.item)}>
+        <TouchableOpacity style={[backgroundStyle,styles.container]}
+                          onPress={() => handleDetail(data.item)}>
             <Text style={[textStyle,styles.textTitle]}>{data.item.name}</Text>
             <Text style={[textStyle,styles.text]}>{data.item.contact}</Text>
         </TouchableOpacity>;
